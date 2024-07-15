@@ -10,7 +10,7 @@ Here we can see all the distributions are in a bell-curve shape, with the only n
 
 ![visualise_rsi_heatmap](https://github.com/user-attachments/assets/571cf67d-be41-461a-9464-5fcb9f450c5e)
 
-The RSI periods are heavily correlated, with the most distant relationship being the 2-period RSI and the 24-period RSI which is still qutie correlated with a correlation value of 0.43. Due to the high overlapping information, PCA will allow us to reduce the dimensionality and presereve the maximum amount of information.
+The RSI periods are heavily correlated, with the most distant relationship being the 2-period RSI and the 24-period RSI which is still quite correlated with a correlation value of 0.43. Due to the high overlapping information, PCA will allow us to reduce the dimensionality and presereve the maximum amount of information.
 
 # Compute PCA
 
