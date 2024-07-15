@@ -30,22 +30,22 @@ def pca_linear_model(data: pd.DataFrame, y: pd.Series, n_components: int, thresh
     l_thresh = model_data['pred'].quantile(0.99)
     s_thresh = model_data['pred'].quantile(0.01)
 
-    return model_coefs, means, l_thresh, s_thresh, model_data
+    return model_coefs, evecs, means, l_thresh, s_thresh, model_data
 
-data = pd.read_csv('XAUUSD.raw_M10_202201030300_202312292350.csv')
+data = pd.read_csv('USA30_M30.csv')
 
 rsi_periods = list(range(2, 25))
 rsis = pd.DataFrame()
 for period in rsi_periods:
-    rsis[period] = ta.momentum.rsi(data["<CLOSE>"], period, True)
+    rsis[period] = ta.momentum.rsi(data["Close"], period, True)
 
-target = np.log(data['<CLOSE>']).diff(6).shift(-6)
+target = np.log(data['Close']).diff(6).shift(-6)
 
 rsis['target'] = target
 rsis = rsis.dropna()
 target = rsis['target']
 rsis = rsis.drop('target',axis=1)
-coefs, means, l_thresh, s_thresh, model_data =  pca_linear_model(rsis, target, 3)
+coefs, evecs, means, l_thresh, s_thresh, model_data =  pca_linear_model(rsis, target, 3)
 
 model_data.plot.scatter('pred', 'target')
 plt.axhline(0.0, color='white')
